@@ -50,17 +50,17 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column   | Type    | Options                        |
-| -------- | ------- | ------------------------------ |
-| name     | string  | null: false                    |
-| image    | string  | null: false, foreign_key: true |
-| text     | text    | null: false                    |
-| price    | integer | null: false                    |
-| category | string  | null: false                    |
-| status   | string  | null: false                    |
-| postage  | string  | null: false                    |
-| user_id  | integer | null: false, foreign_key: true |
-| address  | string  | null: false                    |
+| Column        | Type    | Options                        |
+| ------------- | ------- | ------------------------------ |
+| name          | string  | null: false                    |
+| image         | string  | null: false                    |
+| explanation   | text    | null: false                    |
+| price         | integer | null: false                    |
+| category_id   | integer | null: false                    |
+| status_id     | integer | null: false                    |
+| postage_id    | integer | null: false                    |
+| user_id       | integer | null: false, foreign_key: true |
+| prefecture_id | integer | null: false                    |
 
 ### Association
 
@@ -71,10 +71,25 @@ Things you may want to cover:
 
 ## buys テーブル
 
-| Column            | Type       | Options           |
-| ----------------- | ---------- | ----------------- |
+| Column  | Type    | Options                        |
+| ------- | ------- | ------------------------------ |
 | user_id | integer | null: false, foreign_key: true |
+| item_id | integer | null: false, foreign_key: true |
 
 ### Association
 
 - belongs_to :user
+- has_one :deliverys
+
+
+## deliverys テーブル
+
+| Column  | Type    | Options                        |
+| ------- | ------- | ------------------------------ |
+| user_id | integer | null: false, foreign_key: true |
+| buy_id  | integer | null: false, foreign_key: true |
+
+### Association
+
+- belongs_to :user
+- belongs_to :buy
