@@ -25,7 +25,6 @@ Things you may want to cover:
 
 # テーブル設計
 
-
 ## users テーブル
 
 | Column           | Type    | Options     |
@@ -97,3 +96,4 @@ Things you may want to cover:
 ### Association
 
 - has_one :buy
+
