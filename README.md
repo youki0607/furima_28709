@@ -87,16 +87,15 @@ Things you may want to cover:
 
 | Column       | Type    | Options                        |
 | ------------ | ------- | ------------------------------ |
-| user_id      | integer | null: false, foreign_key: true |
 | buy_id       | integer | null: false, foreign_key: true |
-| postal_code  | integer | null: false                    |
+| postal_code  | string  | null: false                    |
 | prefectures  | integer | null: false                    |
 | city         | integer | null: false                    |
 | house_number | string  | null: false                    |
-| phone_number | integer | null: false                    |
+| build_number | string  | null: false                    |
+| phone_number | string  | null: false                    |
 
 
 ### Association
 
-- belongs_to :user
-- belongs_to :buy
+- has_one :buy
