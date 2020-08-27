@@ -79,15 +79,22 @@ Things you may want to cover:
 ### Association
 
 - belongs_to :user
+- belongs_to :item
 - has_one :deliverys
 
 
 ## deliverys テーブル
 
-| Column  | Type    | Options                        |
-| ------- | ------- | ------------------------------ |
-| user_id | integer | null: false, foreign_key: true |
-| buy_id  | integer | null: false, foreign_key: true |
+| Column       | Type    | Options                        |
+| ------------ | ------- | ------------------------------ |
+| user_id      | integer | null: false, foreign_key: true |
+| buy_id       | integer | null: false, foreign_key: true |
+| postal_code  | integer | null: false                    |
+| prefectures  | integer | null: false                    |
+| city         | integer | null: false                    |
+| house_number | string  | null: false                    |
+| phone_number | integer | null: false                    |
+
 
 ### Association
 
