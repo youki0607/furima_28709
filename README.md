@@ -25,9 +25,6 @@ Things you may want to cover:
 
 # テーブル設計
 
-## active_hashがちゃんと作られているのか分かりません。
-## active_hashをgemfileで導入するまでは上手くいったのですが、その後に「rails g model --skip-migration」をした後に「rails g model」でArticleモデルを作成しました。先に「rails g model」を作成した方が良かったのでしょうか。
-
 ## users テーブル
 
 | Column           | Type    | Options     |
@@ -99,3 +96,4 @@ Things you may want to cover:
 ### Association
 
 - has_one :buy
+
