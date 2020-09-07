@@ -17,12 +17,12 @@ class Item < ApplicationRecord
     validates :user
     validates :image
     validates :explanation
-    validates :price, numericality: { only_integer: true }
-    validates :category, numericality: { other_than: 1 }
-    validates :status, numericality: { other_than: 1 }
-    validates :postage, numericality: { other_than: 1 }
-    validates :prefecture, numericality: { other_than: 1 }
-    validates :shipping_day, numericality: { other_than: 1 }
+    validates :price, numericality: { only_integer: true, greater_than: 299,less_than: 9999999}
+    validates :category_id, numericality: { other_than: 1 }
+    validates :status_id, numericality: { other_than: 1 }
+    validates :postage_id, numericality: { other_than: 1 }
+    validates :prefecture_id, numericality: { other_than: 1 }
+    validates :shipping_day_id, numericality: { other_than: 1 }
   end
 end
 
