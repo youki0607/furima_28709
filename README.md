@@ -78,7 +78,7 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one :deliverys
+- has_one :delivery
 
 
 ## deliverys テーブル

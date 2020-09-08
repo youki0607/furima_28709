@@ -7,13 +7,22 @@ RSpec.describe Item, type: :model do
     end
 
     context '商品出品がうまくいくとき' do
-      it ''
+      it 'image,name,explanation,explanation'
     end
   end
 
 
 end
-
+name            | string  | null: false                    |
+| image           | string  | null: false                    |
+| explanation     | text    | null: false                    |
+| price           | integer | null: false                    |
+| category_id     | integer | null: false                    |
+| status_id       | integer | null: false                    |
+| postage_id      | integer | null: false                    |
+| user_id         | integer | null: false, foreign_key: true |
+| prefecture_id   | integer | null: false                    |
+| shipping_day_id 
 
 require 'rails_helper'
 
