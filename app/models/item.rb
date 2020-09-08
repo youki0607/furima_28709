@@ -13,11 +13,11 @@ class Item < ApplicationRecord
   
 
   with_options presence: true do
-    validates :name
     validates :user
     validates :image
+    validates :name
     validates :explanation
-    validates :price, numericality: { only_integer: true, greater_than: 299,less_than: 9999999}
+    validates :price, numericality: { only_integer: true, greater_than: 299,less_than: 9999999, message: '半角英数で入力してください'}
     validates :category_id, numericality: { other_than: 1 }
     validates :status_id, numericality: { other_than: 1 }
     validates :postage_id, numericality: { other_than: 1 }

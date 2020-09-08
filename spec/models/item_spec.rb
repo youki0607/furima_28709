@@ -3,53 +3,68 @@ require 'rails_helper'
 RSpec.describe Item, type: :model do
   describe 'ユーザー商品出品' do
     before do
-      @item = FactoryBot.build(:item)
+      user = FactoryBot.create(:user)
+      @item = FactoryBot.build(:item, user_id: user.id)
+      @item.image = fixture_file_upload('public/Egf8YtgU8AIgHjP.jpeg')
     end
 
     context '商品出品がうまくいくとき' do
-      it 'image,name,explanation,explanation'
+      it 'image,name,explanation,category,status,postage,prefecture,shipping day,price,userが存在すれば出品できる' do
+        expect(@item).to be_valid
+      end
+    end
+
+    context '商品出品がうまくいかないとき' do
+      it 'user_idが存在しなければ出品できない' do
+        @item.user_id = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
+      end
+      it 'imageが空では出品できない' do
+        @item.image = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Image can't be blank")
+      end
+      it 'explanationが空では出品できない' do
+        @item.explanation = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Explanation can't be blank")
+      end
+      it 'categoryが空では出品できない' do
+        @item.category = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Category can't be blank")
+      end
+      it 'statusが空では出品できない' do
+        @item.status = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Status can't be blank")
+      end
+      it 'postageが空では出品できない' do
+        @item.postage = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Postage can't be blank")
+      end
+      it 'prefectureが空では出品できない' do
+        @item.prefecture= nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Prefecture can't be blank")
+      end 
+      it 'shipping_dayが空では出品できない' do
+        @item.shipping_day = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Shipping day can't be blank")
+      end
+      it 'priceが空では出品できない' do
+        @item.price = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price can't be blank")
+      end
+      it 'priceが半角数字で入力されていなければ出品できない' do
+        @item.price = "１０００"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price 半角英数で入力してください")
+      end
     end
   end
-
-
 end
-name            | string  | null: false                    |
-| image           | string  | null: false                    |
-| explanation     | text    | null: false                    |
-| price           | integer | null: false                    |
-| category_id     | integer | null: false                    |
-| status_id       | integer | null: false                    |
-| postage_id      | integer | null: false                    |
-| user_id         | integer | null: false, foreign_key: true |
-| prefecture_id   | integer | null: false                    |
-| shipping_day_id 
-
-require 'rails_helper'
-
-RSpec.describe User, type: :model do
-  describe 'ユーザー新規登録' do
-    before do
-      @user = FactoryBot.build(:user)
-    end
-
-    context '新規登録がうまくいくとき' do
-      it 'nameとemail、passwordとpassword_confirmation,family_name,first_name,family_name_kana,firsy_name_kanaが存在すれば登録できる' do
-        expect(@user).to be_valid
-      end
-      it 'nicknameが存在すれば登録できる' do
-        @user.nickname = 'キン肉マン'
-        expect(@user).to be_valid
-
-        ログインしているユーザーだけが、出品ページへ遷移できること
-画像は1枚必須であること(ActiveStorageを使用すること)
-商品名が必須であること
-商品の説明が必須であること
-カテゴリーの情報が必須であること
-商品の状態についての情報が必須であること
-配送料の負担についての情報が必須であること
-発送元の地域についての情報が必須であること
-発送までの日数についての情報が必須であること
-価格についての情報が必須であること
-価格の範囲が、¥300~¥9,999,999の間であること
-販売価格は半角数字のみ入力可能であること
-入力された販売価格によって、非同期的に販売手数料や販売利益が変わること(JavaScriptを使用して実装すること)
