@@ -47,17 +47,18 @@ Things you may want to cover:
 
 ## items テーブル
 
-| Column        | Type    | Options                        |
-| ------------- | ------- | ------------------------------ |
-| name          | string  | null: false                    |
-| image         | string  | null: false                    |
-| explanation   | text    | null: false                    |
-| price         | integer | null: false                    |
-| category_id   | integer | null: false                    |
-| status_id     | integer | null: false                    |
-| postage_id    | integer | null: false                    |
-| user_id       | integer | null: false, foreign_key: true |
-| prefecture_id | integer | null: false                    |
+| Column          | Type    | Options                        |
+| --------------- | ------- | ------------------------------ |
+| name            | string  | null: false                    |
+| image           | string  | null: false                    |
+| explanation     | text    | null: false                    |
+| price           | integer | null: false                    |
+| category_id     | integer | null: false                    |
+| status_id       | integer | null: false                    |
+| postage_id      | integer | null: false                    |
+| user_id         | integer | null: false, foreign_key: true |
+| prefecture_id   | integer | null: false                    |
+| shipping_day_id | integer | null: false                    |
 
 ### Association
 
@@ -77,7 +78,7 @@ Things you may want to cover:
 
 - belongs_to :user
 - belongs_to :item
-- has_one :deliverys
+- has_one :delivery
 
 
 ## deliverys テーブル
