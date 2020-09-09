@@ -25,10 +25,20 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
+      it 'nameが40文字以上では登録できない' do
+        @item.name = "あいうえお かきくけこ さしすせそ たちつてと なにぬねの はひふへほ まみむめも やいゆえよ わ"
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+      end
       it 'explanationが空では出品できない' do
         @item.explanation = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
+      end
+      it 'explanationが1000文字以上では登録できない' do
+        @item.explanation = Faker::Lorem.characters(number: 1001)
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Explanation is too long (maximum is 1000 characters)")
       end
       it 'categoryが空では出品できない' do
         @item.category = nil
@@ -63,7 +73,17 @@ RSpec.describe Item, type: :model do
       it 'priceが半角数字で入力されていなければ出品できない' do
         @item.price = "１０００"
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price 半角英数で入力してください")
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'priceの範囲が￥300より上であること' do
+        @item.price = 299
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than 299")
+      end
+      it 'priceの範囲が￥9.999.999より下であること' do
+        @item.price = 10000000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than 9999999")
       end
     end
   end
