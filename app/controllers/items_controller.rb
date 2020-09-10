@@ -34,14 +34,6 @@ class ItemsController < ApplicationController
     params.require(:item).permit(:name,:image,:explanation,:price,:category_id,:status_id,:postage_id,:prefecture_id,:shipping_day_id).merge(user_id: current_user.id)
   end
 
-  def edit
-    @item = Item.all
-  end
-
-  def update
-    @item = Item.all
-  end
-
   def move_to_index
     unless user_signed_in?
       redirect_to action: :index
