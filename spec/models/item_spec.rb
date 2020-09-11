@@ -18,7 +18,7 @@ RSpec.describe Item, type: :model do
       it 'user_idが存在しなければ出品できない' do
         @item.user_id = nil
         @item.valid?
-        expect(@item.errors.full_messages).to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
       it 'imageが空では出品できない' do
         @item.image = nil
@@ -26,9 +26,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Image can't be blank")
       end
       it 'nameが40文字以上では登録できない' do
-        @item.name = "あいうえお かきくけこ さしすせそ たちつてと なにぬねの はひふへほ まみむめも やいゆえよ わ"
+        @item.name = 'あいうえお かきくけこ さしすせそ たちつてと なにぬねの はひふへほ まみむめも やいゆえよ わ'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Name is too long (maximum is 40 characters)")
+        expect(@item.errors.full_messages).to include('Name is too long (maximum is 40 characters)')
       end
       it 'explanationが空では出品できない' do
         @item.explanation = nil
@@ -38,7 +38,7 @@ RSpec.describe Item, type: :model do
       it 'explanationが1000文字以上では登録できない' do
         @item.explanation = Faker::Lorem.characters(number: 1001)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Explanation is too long (maximum is 1000 characters)")
+        expect(@item.errors.full_messages).to include('Explanation is too long (maximum is 1000 characters)')
       end
       it 'categoryが空では出品できない' do
         @item.category = nil
@@ -56,10 +56,10 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Postage can't be blank")
       end
       it 'prefectureが空では出品できない' do
-        @item.prefecture= nil
+        @item.prefecture = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("Prefecture can't be blank")
-      end 
+      end
       it 'shipping_dayが空では出品できない' do
         @item.shipping_day = nil
         @item.valid?
@@ -71,19 +71,19 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが半角数字で入力されていなければ出品できない' do
-        @item.price = "１０００"
+        @item.price = '１０００'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is not a number")
+        expect(@item.errors.full_messages).to include('Price is not a number')
       end
       it 'priceの範囲が￥300より上であること' do
         @item.price = 299
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be greater than 299")
+        expect(@item.errors.full_messages).to include('Price must be greater than 299')
       end
       it 'priceの範囲が￥9.999.999より下であること' do
-        @item.price = 10000000
+        @item.price = 10_000_000
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price must be less than 9999999")
+        expect(@item.errors.full_messages).to include('Price must be less than 9999999')
       end
     end
   end
