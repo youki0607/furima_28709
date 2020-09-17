@@ -23,15 +23,14 @@ RSpec.describe UserOrder, type: :model do
         expect(@userorder).to be_valid
       end
       it 'phone_numberが11桁以内なら購入できる' do
-        @userorder.phone_number = 12345678901
+        @userorder.phone_number = 12_345_678_901
         expect(@userorder).to be_valid
       end
       it 'phone_numberに-が存在しなければ購入できる' do
-        @userorder.phone_number = 12345678901
+        @userorder.phone_number = 12_345_678_901
         expect(@userorder).to be_valid
       end
     end
-
 
     context '商品購入がうまくいかないとき' do
       it 'postal_codeがなければ購入できない' do
@@ -65,14 +64,14 @@ RSpec.describe UserOrder, type: :model do
         expect(@userorder.errors.full_messages).to include("Phone number can't be blank")
       end
       it 'phone_numberが12桁以上だと購入できない' do
-        @userorder.phone_number = 12345678901234567890
+        @userorder.phone_number = 12_345_678_901_234_567_890
         @userorder.valid?
-        expect(@userorder.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+        expect(@userorder.errors.full_messages).to include('Phone number is too long (maximum is 11 characters)')
       end
       it 'phone_numberに-が存在すると購入できない' do
-        @userorder.phone_number = "123-4567-8901"
+        @userorder.phone_number = '123-4567-8901'
         @userorder.valid?
-        expect(@userorder.errors.full_messages).to include("Phone number Contains hyphen(-)")
+        expect(@userorder.errors.full_messages).to include('Phone number Contains hyphen(-)')
       end
     end
   end
