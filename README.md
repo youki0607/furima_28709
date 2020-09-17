@@ -88,7 +88,7 @@ Things you may want to cover:
 | orders_id    | integer | null: false, foreign_key: true |
 | postal_code  | string  | null: false                    |
 | prefectures  | integer | null: false                    |
-| city         | integer | null: false                    |
+| city         | string  | null: false                    |
 | house_number | string  | null: false                    |
 | build_number | string  | null: false                    |
 | phone_number | string  | null: false                    |
@@ -96,5 +96,5 @@ Things you may want to cover:
 
 ### Association
 
-- has_one :order
+- belongs_to :order
 
