@@ -81,9 +81,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Price must be greater than 299')
       end
       it 'priceの範囲が￥9.999.999より下であること' do
-        @item.price = 10_000_000
+        @item.price = 10000000
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price must be less than 9999999')
+        expect(@item.errors.full_messages).to include('Price must be less than 10000000')
       end
     end
   end
