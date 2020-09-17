@@ -30,14 +30,6 @@ const pay = () => {
         document.getElementById("charge-form").submit();
         document.getElementById("charge-form").reset();
       }
-
-      // document.getElementById("postal-code").removeAttribute("name");
-      // document.getElementById("prefecture").removeAttribute("name");
-      // document.getElementById("city").removeAttribute("name");
-      // document.getElementById("house-number").removeAttribute("name");
-      // document.getElementById("building").removeAttribute("name");
-      // document.getElementById("phone-number").removeAttribute("name");
-
     });
   });
 };
